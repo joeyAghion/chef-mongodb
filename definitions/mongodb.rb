@@ -138,7 +138,10 @@ define :mongodb_instance, :mongodb_type => "mongod" , :action => [:enable, :star
     group node['mongodb']['root_group']
     owner "root"
     mode "0755"
-    variables :provides => name
+    variables(
+      "provides" => name,
+      "mongouser" => node[:mongodb][:user]
+    )
     notifies :restart, "service[#{name}]"
   end
   

@@ -64,7 +64,7 @@ DIETIME=10                  # Time to wait for the server to die, in seconds
                             # let some servers to die gracefully and
                             # 'restart' will not work
 
-DAEMONUSER=${DAEMONUSER:-mongodb}
+DAEMONUSER=${DAEMONUSER:-<%= @mongouser %>}
 
 # debugging
 echo "** Running $NAME ($DAEMON $DAEMON_OPTS)"
