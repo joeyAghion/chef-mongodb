@@ -19,6 +19,10 @@ DAEMON_OPTS="$DAEMON_OPTS --bind_ip <%= @bind_ip %>"
 <%= @configsrv ? "DAEMON_OPTS=\"$DAEMON_OPTS --configsvr\"" : "" %>
 <%= @shardsrv ? "DAEMON_OPTS=\"$DAEMON_OPTS --shardsvr\"" : "" %>
 
+<% if @disable_journal %>
+DAEMON_OPTS="$DAEMON_OPTS --nojournal"
+<% end %>
+
 <% if @replicaset_name %>
 DAEMON_OPTS="$DAEMON_OPTS --replSet <%= @replicaset_name %>"
 <% end %>

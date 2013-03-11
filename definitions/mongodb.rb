@@ -32,6 +32,8 @@ define :mongodb_instance, :mongodb_type => "mongod" , :action => [:enable, :star
   service_notifies = params[:notifies]
   
   bind_ip = params[:bind_ip]
+  disable_journal = params[:disable_journal]
+  
   port = params[:port]
 
   logpath = params[:logpath]
@@ -98,6 +100,7 @@ define :mongodb_instance, :mongodb_type => "mongod" , :action => [:enable, :star
       "port" => port,
       "logpath" => logfile,
       "dbpath" => dbpath,
+      "disable_journal" => disable_journal,
       "replicaset_name" => replicaset_name,
       "configsrv" => false, #type == "configserver", this might change the port
       "shardsrv" => false,  #type == "shard", dito.

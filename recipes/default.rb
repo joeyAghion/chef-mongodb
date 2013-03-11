@@ -42,5 +42,6 @@ if node.recipe?("mongodb::default") or node.recipe?("mongodb")
     logpath      node['mongodb']['logpath']
     dbpath       node['mongodb']['dbpath']
     enable_rest  node['mongodb']['enable_rest']
+    disable_journal node['mongodb']['disable_journal']
   end
 end
