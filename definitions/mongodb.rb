@@ -22,7 +22,7 @@
 define :mongodb_instance, :mongodb_type => "mongod" , :action => [:enable, :start],
     :bind_ip => nil, :port => 27017 , :logpath => "/var/log/mongodb",
     :dbpath => "/data", :configfile => "/etc/mongodb.conf", :configserver => [],
-    :replicaset => nil, :enable_rest => false, :notifies => [] do
+    :replicaset => nil, :enable_rest => false, :cookbook => "mongodb", :notifies => [] do
     
   include_recipe "mongodb::default"
   
@@ -87,6 +87,7 @@ define :mongodb_instance, :mongodb_type => "mongod" , :action => [:enable, :star
   # default file
   template "#{node['mongodb']['defaults_dir']}/#{name}" do
     action :create
+    cookbook params[:cookbook]
     source "mongodb.default.erb"
     group node['mongodb']['root_group']
     owner "root"
@@ -132,6 +133,7 @@ define :mongodb_instance, :mongodb_type => "mongod" , :action => [:enable, :star
   # init script
   template "#{node['mongodb']['init_dir']}/#{name}" do
     action :create
+    cookbook params[:cookbook]
     source node[:mongodb][:init_script_template]
     group node['mongodb']['root_group']
     owner "root"
