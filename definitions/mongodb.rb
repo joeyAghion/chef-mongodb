@@ -24,8 +24,6 @@ define :mongodb_instance, :mongodb_type => "mongod" , :action => [:enable, :star
     :dbpath => "/data", :configfile => "/etc/mongodb.conf", :configserver => [],
     :replicaset => nil, :enable_rest => false, :cookbook => "mongodb", :notifies => [] do
     
-  include_recipe "mongodb::default"
-  
   name = params[:name]
   type = params[:mongodb_type]
   service_action = params[:action]
