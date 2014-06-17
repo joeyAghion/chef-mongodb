@@ -57,6 +57,9 @@ when 'rhel'
   # Add --nogpgcheck option when package is signed
   # see: https://jira.mongodb.org/browse/SERVER-8770
   packager_opts = '--nogpgcheck'
+
+  # Must exclude new package scheme, since it 'obsoletes' the desired version.
+  packager_opts += ' --exclude=mongodb-org*' if node['mongodb']['package_name'] =~ /mongo\-10gen/
 else
   packager_opts = ''
 end
